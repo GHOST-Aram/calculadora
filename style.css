@@ -41,7 +41,7 @@
 .container{
     width: 25%;
     margin: auto;
-    margin-top: 3rem;
+    margin-top: 6rem;
     flex-direction: column;
     border-radius: .5rem;
 }
@@ -101,6 +101,6 @@
 }
 @media screen and (max-width:800px) {
     .container{
-        width: 50%;
+        width: 95%;
     }
 }
