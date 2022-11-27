@@ -1,6 +1,9 @@
 function add(num1, num2){
     return num1 + num2
 }
+function clearScreen(){
+    document.location.reload()
+}
 function deleteInputChar(input){
     const char = input.charAt(input.length-1)
     return input.replace(char,'')
@@ -54,6 +57,22 @@ const numberBtns = document.querySelectorAll('.number')
 const decimalBtn = document.querySelector('#decimal-point')
 const operatorBtns = document.querySelectorAll('.operator-btn')
 const deleteBtn = document.querySelector('#back-space')
+const clearBtn = document.querySelector('#clear')
+
+
+//Clear button
+clearBtn.addEventListener('click', clearScreen)
+
+decimalBtn.addEventListener('click', (e) =>{
+    displayInput(e.target)
+})
+
+
+
+//Delete button
+deleteBtn.addEventListener('click', (e) =>{
+    textbox.value = deleteInputChar(textbox.value)
+})
 
 //Add click event listener to all numbers
 numberBtns.forEach(btn => {
@@ -62,19 +81,9 @@ numberBtns.forEach(btn => {
     } )
 });
 
-decimalBtn.addEventListener('click', (e) =>{
-    displayInput(e.target)
-})
-
 //Operator buttons
 operatorBtns.forEach(btn =>{
     btn.addEventListener('click',(e) =>{
         displayInput(btn)
     })
 })
-
-//Delete button
-deleteBtn.addEventListener('click', (e) =>{
-    textbox.value = deleteInputChar(textbox.value)
-})
-
