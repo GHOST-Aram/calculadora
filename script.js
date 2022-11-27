@@ -53,7 +53,7 @@ const operatorBtns = document.querySelectorAll('.operator-btn')
 //Add click event listener to all numbers
 numberBtns.forEach(btn => {
     btn.addEventListener('click',(e) =>{
-        displayInput(e.target)
+        displayInput(btn)
     } )
 });
 
