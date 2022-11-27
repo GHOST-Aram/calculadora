@@ -17,8 +17,22 @@ function divide(num1, num2){
 function divMod(num1, num2){
     return num1 % num2
 }
+function getExpression(input){
+    const regexL = /^[\d]+/g
+    const regexR = /[\d]+$/g
+    const regexOp = /[\+|\-|\*|\%]/
+    const expression = {
+        leftOperand:parseInt(input.match(regexL)[0]),
+        rightOperand:parseInt(input.match(regexR)[0]),
+        operator:input.match(regexOp)[0],
+    }
+    return expression     
+}
 function multiply(num1, num2){
     return num1 * num2 
+}
+function renderOutput(answer, element){
+    element.textContent = answer
 }
 function subtract(num1, num2){
     return num1 - num2
@@ -26,22 +40,25 @@ function subtract(num1, num2){
 
 //Operator method
 
-function operator(num1, num2, operator){
+function operate(expression){
+    const num1 = expression.leftOperand
+    const num2 = expression.rightOperand
+    const operator = expression.operator
     let answer = 0
     switch(operator){
-        case operator === '+':
+        case '+':
             answer = add(num1, num2)
             break
-        case operator === '-':
+        case '-':
             answer = subtract(num1, num2)
             break
-        case operator === '*':
+        case '*':
             answer = multiply(num1, num2)
             break
-        case operator === '/':
+        case '/':
             answer = divide(num1, num2)
             break
-        case operator === '%':
+        case '%':
             answer = divMod(num1, num2)
             break
         default:
@@ -58,7 +75,8 @@ const decimalBtn = document.querySelector('#decimal-point')
 const operatorBtns = document.querySelectorAll('.operator-btn')
 const deleteBtn = document.querySelector('#back-space')
 const clearBtn = document.querySelector('#clear')
-
+const returnBtn = document.querySelector('#equal-sign')
+const answerPrgph = document.querySelector('#answer')
 
 //Clear button
 clearBtn.addEventListener('click', clearScreen)
@@ -86,4 +104,13 @@ operatorBtns.forEach(btn =>{
     btn.addEventListener('click',(e) =>{
         displayInput(btn)
     })
+})
+
+//Return button / equal sign button
+returnBtn.addEventListener('click', (e) =>{
+    const expression = getExpression(textbox.value)
+    console.log(expression.leftOperand)
+    const answer = operate(expression)
+    console.log(answer)
+    renderOutput(answer, answerPrgph)
 })
