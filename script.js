@@ -1,6 +1,9 @@
 function add(num1, num2){
     return num1 + num2
 }
+function displayInput(btn){
+    textbox.value += btn.value
+}
 function divide(num1, num2){
     return num1/num2
 }
@@ -40,9 +43,22 @@ function operator(num1, num2, operator){
     return answer
 }
 
-function displayInput(input){
-    const textbox = document.querySelector('input')
-    textbox.value += input
-}
+//Calc input 
+const textbox = document.querySelector('input')
+
+const numberBtns = document.querySelectorAll('.number')
+const decimalBtn = document.querySelector('#decimal-point')
+
+//Add click event listener to all numbers
+numberBtns.forEach(btn => {
+    btn.addEventListener('click',(e) =>{
+        displayInput(e.target)
+    } )
+});
+
+decimalBtn.addEventListener('click', (e) =>{
+    displayInput(e.target)
+})
+
 
 
