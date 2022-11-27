@@ -39,11 +39,11 @@
 }
 
 .container{
-    width: 25%;
     margin: auto;
     margin-top: 6rem;
     flex-direction: column;
     border-radius: .5rem;
+    width: 250px;
 }
 #decimal-point, #key-0{
     padding-inline: 1.5rem;
@@ -65,6 +65,12 @@
 }
 .gap-2{
     gap: 2rem;
+}
+.gap-3{
+    gap: 3rem;
+}
+.gap-l{
+    gap: .25rem;
 }
 .grid{
     display: grid;
@@ -99,8 +105,11 @@
 .text-start{
     text-align: start;
 }
-@media screen and (max-width:800px) {
+/* @media (min-width:320px) and (max-width:480px) {
     .container{
-        width: 95%;
+        min-width: 60%;
     }
-}
+    #decimal-point, #key-0{
+    
+    }
+} */
