@@ -48,6 +48,7 @@ const textbox = document.querySelector('input')
 
 const numberBtns = document.querySelectorAll('.number')
 const decimalBtn = document.querySelector('#decimal-point')
+const operatorBtns = document.querySelectorAll('.operator-btn')
 
 //Add click event listener to all numbers
 numberBtns.forEach(btn => {
@@ -60,5 +61,12 @@ decimalBtn.addEventListener('click', (e) =>{
     displayInput(e.target)
 })
 
+//Operator buttons
+operatorBtns.forEach(btn =>{
+    btn.addEventListener('click',(e) =>{
+        e.stopPropagation()
+        displayInput(btn)
+    })
+})
 
 
