@@ -39,3 +39,10 @@ function operator(num1, num2, operator){
     }
     return answer
 }
+
+function displayInput(input){
+    const textbox = document.querySelector('input')
+    textbox.value += input
+}
+
+

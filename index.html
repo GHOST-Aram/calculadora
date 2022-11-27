@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
     <title>Calculadora</title>
@@ -14,10 +16,10 @@
             <h3 class="calc-name text-center">Calculadora</h3>
             <div class="calc-display p-1 gap-1 bg-grey text-dark">
                 <div class="text-start expression">
-                    <input type="text" class="fw-300">
+                    <input type="text" class="fw-300" id="expression">
                 </div>
                 <div class="text-end answer">
-                    <p class="fw-500">158</p>
+                    <p class="fw-500" id="answer">0</p>
                 </div>
             </div>
             <div class="keys gap-2 flex">
@@ -29,105 +31,105 @@
                         </button>
                     </div>
                     <div>
-                        <button class="btn p-l bg-primary border-none 
+                        <button class="btn p-l bg-primary operator border-none 
                         " id="modulus" value="%">
-                        %
+                        <i class="fa-solid fa-percent"></i>
                         </button>
                     </div>
                     <div>
-                        <button class="btn p-l bg-primary border-none 
-                        " id="plus-minus" value="">
-                        +/-
+                        <button class="btn p-l bg-primary operator border-none 
+                        " id="back-space" value="">
+                        <i class="fa-solid fa-delete-left"></i>
                         </button>
                     </div>
                     <div>
-                        <button class="btn p-l bg-coral border-none 
+                        <button class="btn p-l operator bg-coral border-none 
                         " id="division" value="/">
-                        /
+                        <i class="fa-solid fa-divide"></i>
                         </button>
                     </div>
                 </div>
                 <div class="keys-row flex">
                     <div>
-                        <button class="btn p-l bg-grey border-none 
+                        <button class="btn p-l number bg-grey border-none 
                         " id="key-7" value="7">
                         7
                         </button>
                     </div>
                     <div>
-                        <button class="btn p-l bg-grey border-none 
+                        <button class="btn p-l number bg-grey border-none 
                         " id="key-6" value="8">
                         8
                         </button>
                     </div>
                     <div>
-                        <button class="btn p-l bg-grey border-none 
+                        <button class="btn p-l number bg-grey border-none 
                         " id="key-9" value="9">
                         9
                         </button>
                     </div>
                     <div>
-                        <button class="btn p-l bg-coral border-none 
+                        <button class="btn p-l operator bg-coral border-none 
                         " id="multiplication" value="*">
-                        x
+                        <i class="fa-solid fa-x"></i>
                         </button>
                     </div>
                 </div>
                 <div class="keys-row flex">
                     <div>
-                        <button class="btn p-l bg-grey border-none 
+                        <button class="btn p-l number bg-grey border-none 
                         " id="key-4" value="4">
                         4
                         </button>
                     </div>
                     <div>
-                        <button class="btn p-l bg-grey border-none 
+                        <button class="btn p-l number bg-grey border-none 
                         " id="key-5" value="5">
                         5
                         </button>
                     </div>
                     <div>
-                        <button class="btn p-l bg-grey border-none 
+                        <button class="btn p-l number bg-grey border-none 
                         " id="key-6" value="6">
                         6
                         </button>
                     </div>
                     <div>
-                        <button class="btn p-l bg-coral border-none 
+                        <button class="btn p-l operator bg-coral border-none 
                         " id="subtraction" value="-">
-                        -
+                        <i class="fa-solid fa-minus"></i>
                         </button>
                     </div>
                 </div>
                 <div class="keys-row flex">
                     <div>
-                        <button class="btn p-l bg-grey border-none 
+                        <button class="btn p-l number  bg-grey border-none 
                         " id="key-1" value="1">
                         1
                         </button>
                     </div>
                     <div>
-                        <button class="btn p-l bg-grey border-none 
+                        <button class="btn p-l number bg-grey border-none 
                         " id="key-2" value="2">
                         2
                         </button>
                     </div>
                     <div>
-                        <button class="btn p-l bg-grey border-none 
+                        <button class="btn p-l number bg-grey border-none 
                         " id="key-3" value="3">
                         3
                         </button>
                     </div>
                     <div>
-                        <button class="btn p-l bg-coral border-none 
+                        <button class="btn p-l operator bg-coral border-none 
                         " id="addition" value="+">
-                        +
+                        <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
                 </div>
                 <div class="keys-row bottom-row gap-l flex">
                     <div>
-                        <button class="btn p-l bg-grey border-none 
+                        <button class="btn number p-l bg-grey border-none 
                         " id="key-0" value="0">
                         0
                         </button>
@@ -139,9 +141,9 @@
                         </button>
                     </div>
                     <div>
-                        <button class="btn p-l bg-success border-none 
+                        <button class="btn p-l operator bg-success border-none 
                         " id="equal-sign" value="">
-                        =
+                        <i class="fa-solid fa-equals"></i>
                         </button>
                     </div>
                 </div>
