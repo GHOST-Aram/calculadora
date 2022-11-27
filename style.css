@@ -75,6 +75,14 @@
 .grid{
     display: grid;
 }
+input[type=text]{
+    background-color: transparent;
+    border: none;
+    padding: .5rem;
+}
+input[type=text]:focus{
+    outline: none;
+}
 .keys{
     flex-direction: column;
 }
