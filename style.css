@@ -48,6 +48,9 @@
 #decimal-point, #key-0{
     padding-inline: 1.5rem;
 }
+.calc-display{
+    box-shadow: 4px 4px 8px 4px white inset;
+}
 #equal-sign{
     padding-inline: 3rem;
 }
