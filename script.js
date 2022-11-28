@@ -40,6 +40,7 @@ function findAnswer(){
             allBtns.forEach(btn =>{
                if(!(btn.id === 'clear'))
                     btn.disabled = true
+            console.log(error)
             })
         }
         
@@ -49,7 +50,7 @@ function getExpression(input){
 
     const regexL = /^[\d]+\.?[\d+]?/g
     const regexR = /[\d]+\.?[\d+]?$/g
-    const regexOp = /[\+|\-|\*|\%]/
+    const regexOp = /[\+|\-|\/|\*|\%]/
 
     const expression = {
         leftOperand:parseFloat(input.match(regexL)[0]),
