@@ -25,14 +25,17 @@ function evalChainedOperators(input){
     return answer.toString().concat(char)//15+
 }
 function getExpression(input){
-    const regexL = /^[\d]+/g
-    const regexR = /[\d]+$/g
+    console.log('Input ', input)
+    const regexL = /^[\d]+\.?[\d+]/g
+    const regexR = /[\d]+\.?\d+$/g
     const regexOp = /[\+|\-|\*|\%]/
     const expression = {
-        leftOperand:parseInt(input.match(regexL)[0]),
-        rightOperand:parseInt(input.match(regexR)[0]),
+        leftOperand:parseFloat(input.match(regexL)[0]),
+        rightOperand:parseFloat(input.match(regexR)[0]),
         operator:input.match(regexOp)[0],
     }
+    console.log(parseFloat(input.match(regexL)[0]))
+
     return expression     
 }
 function multiply(num1, num2){
@@ -51,6 +54,7 @@ function operate(expression){
     const num1 = expression.leftOperand
     const num2 = expression.rightOperand
     const operator = expression.operator
+    console.log("Left opoerand ", num1)
     let answer = 0
     switch(operator){
         case '+':
@@ -89,7 +93,7 @@ const answerPrgph = document.querySelector('#answer')
 clearBtn.addEventListener('click', clearScreen)
 
 decimalBtn.addEventListener('click', (e) =>{
-    displayInput(e.target)
+    displayInput(e.target.value)
 })
 
 
@@ -117,6 +121,7 @@ operatorBtns.forEach(btn =>{
 returnBtn.addEventListener('click', (e) =>{
     const expression = getExpression(textbox.value)
     const answer = operate(expression)
+    console.log("Answer ",answer)
     renderOutput(answer, answerPrgph)
 })
 
