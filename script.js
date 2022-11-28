@@ -26,7 +26,7 @@ function evalChainedOperators(input){
 }
 function getExpression(input){
 
-    const regexL = /^[\d]+\.?[\d+]/g
+    const regexL = /^[\d]+\.?[\d+]?/g
     const regexR = /[\d]+\.?[\d+]?$/g
     const regexOp = /[\+|\-|\*|\%]/
 
@@ -54,7 +54,6 @@ function operate(expression){
     const num1 = expression.leftOperand
     const num2 = expression.rightOperand
     const operator = expression.operator
-    console.log("Left opoerand ", num1)
     let answer = 0
     switch(operator){
         case '+':
@@ -113,9 +112,11 @@ numberBtns.forEach(btn => {
 //Operator buttons
 operatorBtns.forEach(btn =>{
     btn.addEventListener('click',(e) =>{
+        
         const regex = /\d+[\+|\/|\-|\*|\%]\d+[\+|\/|\-|\*|\%]/g
 
         displayInput(btn.value)
+
         if(regex.test(textbox.value.toString())){
             textbox.value = evalChainedOperators(textbox.value)
         }
@@ -124,17 +125,27 @@ operatorBtns.forEach(btn =>{
 
 //Return button / equal sign button
 returnBtn.addEventListener('click', (e) =>{
-    const expression = getExpression(textbox.value)
-    const answer = operate(expression)
-    console.log("Answer ",answer)
-    renderOutput(answer, answerPrgph)
+    const regex = /^[\d]+\.?[\d+]?$/g
+    if(regex.test(textbox.value))
+        renderOutput(textbox.value, answerPrgph)
+    else{
+        try {
+            const expression = getExpression(textbox.value)
+            answer = operate(expression)
+            renderOutput(answer, answerPrgph)
+        } catch (error) {
+            textbox.value = 'ERROR'
+            textbox.style.color = 'red'
+        }
+        
+    }
+    
 })
 
 //work with multiple operators from keyboard
 textbox.addEventListener('input', (e) =>{
     const regex = /\d+[\+|\/|\-|\*|\%]\d+[\+|\/|\-|\*|\%]/g
         if(regex.test(textbox.value.toString())){
-            console.log('Match regx ', textbox.value)
             textbox.value = evalChainedOperators(textbox.value)
         }
 })
