@@ -156,7 +156,10 @@ textbox.addEventListener('input', (e) =>{
 //Enable display answe on pressing enter or equal sign
 document.addEventListener('keydown', (e)=>{
     if(e.key === 'Enter' || e.key ==='=')
-        findAnswer()      
+        findAnswer()  
+    const regex = /\d|\+|\-|\*|\%/
+    if(regex.test(e.key))
+        textbox.value += e.key
 })
 
 
