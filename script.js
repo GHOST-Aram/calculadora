@@ -25,10 +25,11 @@ function evalChainedOperators(input){
     return answer.toString().concat(char)//15+
 }
 function getExpression(input){
-    console.log('Input ', input)
+
     const regexL = /^[\d]+\.?[\d+]/g
-    const regexR = /[\d]+\.?\d+$/g
+    const regexR = /[\d]+\.?[\d+]?$/g
     const regexOp = /[\+|\-|\*|\%]/
+
     const expression = {
         leftOperand:parseFloat(input.match(regexL)[0]),
         rightOperand:parseFloat(input.match(regexR)[0]),
@@ -112,7 +113,15 @@ numberBtns.forEach(btn => {
 //Operator buttons
 operatorBtns.forEach(btn =>{
     btn.addEventListener('click',(e) =>{
-            displayInput(btn.value)
+        
+        const regex = /\d+[\+|\/|\-|\*|\%]\d+[\+|\/|\-|\*|\%]/g
+
+        displayInput(btn.value)
+
+        if(regex.test(textbox.value.toString())){
+            console.log('Match regx ', textbox.value)
+            textbox.value = evalChainedOperators(textbox.value)
+        }
     })
 })
 
