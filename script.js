@@ -24,6 +24,27 @@ function evalChainedOperators(input){
     const answer = operate(expression)
     return answer.toString().concat(char)//15+
 }
+function findAnswer(){
+    const regex = /^[\d]+\.?[\d+]?$/g
+    if(regex.test(textbox.value))
+        renderOutput(textbox.value, answerPrgph)
+    else{
+        try {
+            const expression = getExpression(textbox.value)
+            answer = operate(expression)
+            renderOutput(answer, answerPrgph)
+        } catch (error) {
+            textbox.value = 'ERROR'
+            textbox.style.color = 'red'
+            textbox.readOnly = true
+            allBtns.forEach(btn =>{
+               if(!(btn.id === 'clear'))
+                    btn.disabled = true
+            })
+        }
+        
+    }
+}
 function getExpression(input){
 
     const regexL = /^[\d]+\.?[\d+]?/g
@@ -106,7 +127,7 @@ deleteBtn.addEventListener('click', (e) =>{
 //Add click event listener to all numbers
 numberBtns.forEach(btn => {
     btn.addEventListener('click',(e) =>{
-            displayInput(btn.value)
+        displayInput(btn.value)
     } )
 });
 
@@ -122,28 +143,7 @@ operatorBtns.forEach(btn =>{
 })
 
 //Return button / equal sign button
-returnBtn.addEventListener('click', (e) =>{
-    const regex = /^[\d]+\.?[\d+]?$/g
-    if(regex.test(textbox.value))
-        renderOutput(textbox.value, answerPrgph)
-    else{
-        try {
-            const expression = getExpression(textbox.value)
-            answer = operate(expression)
-            renderOutput(answer, answerPrgph)
-        } catch (error) {
-            textbox.value = 'ERROR'
-            textbox.style.color = 'red'
-            textbox.readOnly = true
-            allBtns.forEach(btn =>{
-               if(!(btn.id === 'clear'))
-                    btn.disabled = true
-            })
-        }
-        
-    }
-    
-})
+returnBtn.addEventListener('click', findAnswer)
 
 //work with multiple operators from keyboard
 textbox.addEventListener('input', (e) =>{
@@ -151,6 +151,12 @@ textbox.addEventListener('input', (e) =>{
         if(regex.test(textbox.value.toString())){
             textbox.value = evalChainedOperators(textbox.value)
         }
+})
+
+//Enable display answe on pressing enter or equal sign
+document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter' || e.key ==='=')
+        findAnswer()      
 })
 
 
