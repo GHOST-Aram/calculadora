@@ -157,9 +157,6 @@ textbox.addEventListener('input', (e) =>{
 document.addEventListener('keydown', (e)=>{
     if(e.key === 'Enter' || e.key ==='=')
         findAnswer()  
-    const regex = /\d|\+|\-|\*|\%/
-    if(regex.test(e.key))
-        textbox.value += e.key
 })
 
 
