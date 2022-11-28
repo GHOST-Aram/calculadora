@@ -25,8 +25,8 @@ function evalChainedOperators(input){
 }
 
 function findAnswer(){
-    const regex = /^[\d]+\.?[\d+]?$/g
-    if(regex.test(textbox.value))
+    const regex = /^[0-9]+\.?[0-9]+?$/g
+    if(regex.test(textbox.value) && typeof parseFloat(textbox.value) === 'number')
         renderOutput(textbox.value, answerPrgph)
     else{
         try {
@@ -41,7 +41,6 @@ function findAnswer(){
                if(!(btn.id === 'clear'))
                     btn.disabled = true
             })
-            console.log(error)
         }
         
     }
@@ -49,17 +48,14 @@ function findAnswer(){
 function getExpression(input){
 
     const regexL = /^[\+|\-|\.]?[\d]+\.?[\d+]?/g
-    const regexR = /[\d]+\.?[\d+]?$/g
+    const regexR = /[0-9]+\.?[0-9]+?$/g
     const regexOp = /[\+|\-|\/|\*|\%]+/g
-
-    console.log('OP ',input.match(regexOp)[0])
 
     const expression = {
         leftOperand:parseFloat(input.match(regexL)[0]),
         rightOperand:parseFloat(input.match(regexR)[0]),
         operator:input.match(regexOp)[0],
     }
-
     return expression     
 }
 function multiply(num1, num2){
