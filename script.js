@@ -87,6 +87,7 @@ const deleteBtn = document.querySelector('#back-space')
 const clearBtn = document.querySelector('#clear')
 const returnBtn = document.querySelector('#equal-sign')
 const answerPrgph = document.querySelector('#answer')
+const allBtns = document.querySelectorAll('button')
 
 //Clear button
 clearBtn.addEventListener('click', clearScreen)
@@ -112,11 +113,8 @@ numberBtns.forEach(btn => {
 //Operator buttons
 operatorBtns.forEach(btn =>{
     btn.addEventListener('click',(e) =>{
-        
         const regex = /\d+[\+|\/|\-|\*|\%]\d+[\+|\/|\-|\*|\%]/g
-
         displayInput(btn.value)
-
         if(regex.test(textbox.value.toString())){
             textbox.value = evalChainedOperators(textbox.value)
         }
@@ -136,6 +134,11 @@ returnBtn.addEventListener('click', (e) =>{
         } catch (error) {
             textbox.value = 'ERROR'
             textbox.style.color = 'red'
+            textbox.readOnly = true
+            allBtns.forEach(btn =>{
+               if(!(btn.id === 'clear'))
+                    btn.disabled = true
+            })
         }
         
     }
