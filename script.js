@@ -113,13 +113,10 @@ numberBtns.forEach(btn => {
 //Operator buttons
 operatorBtns.forEach(btn =>{
     btn.addEventListener('click',(e) =>{
-        
         const regex = /\d+[\+|\/|\-|\*|\%]\d+[\+|\/|\-|\*|\%]/g
 
         displayInput(btn.value)
-
         if(regex.test(textbox.value.toString())){
-            console.log('Match regx ', textbox.value)
             textbox.value = evalChainedOperators(textbox.value)
         }
     })
