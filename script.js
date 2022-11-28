@@ -34,7 +34,6 @@ function getExpression(input){
         rightOperand:parseFloat(input.match(regexR)[0]),
         operator:input.match(regexOp)[0],
     }
-    console.log(parseFloat(input.match(regexL)[0]))
 
     return expression     
 }
