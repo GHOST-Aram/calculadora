@@ -8,14 +8,21 @@ function deleteInputChar(input){
     const char = input.charAt(input.length-1)
     return input.replace(char,'')
 }
-function displayInput(btn){
-    textbox.value += btn.value
+function displayInput(value){
+    textbox.value += value
 }
 function divide(num1, num2){
     return num1/num2
 }
 function divMod(num1, num2){
     return num1 % num2
+}
+function evalChainedOperators(input){
+    const char = input.charAt(input.length - 1)//12+3+
+    input = input.slice(0,-1)//12+3
+    let expression = getExpression(input)
+    const answer = operate(expression)
+    return answer.toString().concat(char)//15+
 }
 function getExpression(input){
     const regexL = /^[\d]+/g
@@ -95,22 +102,32 @@ deleteBtn.addEventListener('click', (e) =>{
 //Add click event listener to all numbers
 numberBtns.forEach(btn => {
     btn.addEventListener('click',(e) =>{
-        displayInput(btn)
+            displayInput(btn.value)
     } )
 });
 
 //Operator buttons
 operatorBtns.forEach(btn =>{
     btn.addEventListener('click',(e) =>{
-        displayInput(btn)
+            displayInput(btn.value)
     })
 })
 
 //Return button / equal sign button
 returnBtn.addEventListener('click', (e) =>{
     const expression = getExpression(textbox.value)
-    console.log(expression.leftOperand)
     const answer = operate(expression)
-    console.log(answer)
     renderOutput(answer, answerPrgph)
 })
+
+//work with multiple operators from keyboard
+textbox.addEventListener('input', (e) =>{
+    const regex = /\d+[\+|\/|\-|\*|\%]\d+[\+|\/|\-|\*|\%]/g
+        if(regex.test(textbox.value.toString())){
+            console.log('Match regx ', textbox.value)
+            textbox.value = evalChainedOperators(textbox.value)
+        }
+})
+
+
+
