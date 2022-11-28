@@ -5,8 +5,7 @@ function clearScreen(){
     document.location.reload()
 }
 function deleteInputChar(input){
-    const char = input.charAt(input.length-1)
-    return input.replace(char,'')
+    return input.slice(0, -1)
 }
 function displayInput(value){
     textbox.value += value
@@ -142,7 +141,7 @@ numberBtns.forEach(btn => {
 operatorBtns.forEach(btn =>{
     btn.addEventListener('click',(e) =>{
         displayInput(btn.value)
-        if(regex.test(textbox.value.toString())){
+        while(regex.test(textbox.value.toString())){
             solvePartly()
         
     }
@@ -154,7 +153,7 @@ returnBtn.addEventListener('click', findAnswer)
 
 //work with multiple operators from keyboard
 textbox.addEventListener('input', () =>{
-    if(regex.test(textbox.value.toString())){
+    while(regex.test(textbox.value.toString())){
         solvePartly()
     }
 })
