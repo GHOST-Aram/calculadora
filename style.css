@@ -85,6 +85,8 @@ input[type=text]{
     background-color: transparent;
     border: none;
     padding: .5rem;
+    display: inline-flex;
+    justify-content: flex-start;
 }
 .btn:focus,
 input[type=text]:focus{

@@ -66,6 +66,9 @@ function multiply(num1, num2){
 function renderOutput(answer, element){
     element.textContent = answer
 }
+function solvePartly(){
+    textbox.value = evalChainedOperators(textbox.value)
+}
 function subtract(num1, num2){
     return num1 - num2
 }
@@ -111,6 +114,9 @@ const returnBtn = document.querySelector('#equal-sign')
 const answerPrgph = document.querySelector('#answer')
 const allBtns = document.querySelectorAll('button')
 
+//regex for checking chained operator
+const regex = /\d+[\+|\/|\-|\*|\%]\d+[\+|\/|\-|\*|\%]/g
+
 //Clear button
 clearBtn.addEventListener('click', clearScreen)
 
@@ -135,23 +141,22 @@ numberBtns.forEach(btn => {
 //Operator buttons
 operatorBtns.forEach(btn =>{
     btn.addEventListener('click',(e) =>{
-        const regex = /\d+[\+|\/|\-|\*|\%]\d+[\+|\/|\-|\*|\%]/g
         displayInput(btn.value)
         if(regex.test(textbox.value.toString())){
-            textbox.value = evalChainedOperators(textbox.value)
-        }
-    })
+            solvePartly()
+        
+    }
+})
 })
 
 //Return button / equal sign button
 returnBtn.addEventListener('click', findAnswer)
 
 //work with multiple operators from keyboard
-textbox.addEventListener('input', (e) =>{
-    const regex = /\d+[\+|\/|\-|\*|\%]\d+[\+|\/|\-|\*|\%]/g
-        if(regex.test(textbox.value.toString())){
-            textbox.value = evalChainedOperators(textbox.value)
-        }
+textbox.addEventListener('input', () =>{
+    if(regex.test(textbox.value.toString())){
+        solvePartly()
+    }
 })
 
 //Enable display answe on pressing enter or equal sign
