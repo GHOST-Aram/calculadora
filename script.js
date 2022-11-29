@@ -2,7 +2,8 @@ function add(num1, num2){
     return num1 + num2
 }
 function clearScreen(){
-    document.location.reload()
+    textbox.value = ""
+    answerPrgph.textContent = '0'
 }
 function deleteInputChar(input){
     return input.slice(0, -1)
@@ -133,6 +134,7 @@ function operate(expression){
     return answer
 }
 
+///Calculadora starts
 //Calc input 
 const textbox = document.querySelector('input')
 
