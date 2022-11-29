@@ -48,7 +48,7 @@ function getExpression(input){
 
     const regexL = /^[\+|\-|\.]?[\d]+\.?[\d+]?/g
     const regexR = /[\d]+\.?[\d+]?$/g
-    const regexOp = /[\+|\-|\/|\*|\%]/
+    const regexOp = /[\+|\-|\/|\*|\%]+/
 
     const expression = {
         leftOperand:parseFloat(input.match(regexL)[0]),
@@ -59,6 +59,9 @@ function getExpression(input){
 }
 function multiply(num1, num2){
     return num1 * num2 
+}
+function power(num1, num2){
+    return Math.pow(num1, num2)
 }
 function renderOutput(answer, element){
     element.textContent = answer
@@ -77,13 +80,14 @@ function operate(expression){
     const num2 = expression.rightOperand
     const operator = expression.operator
     let answer = 0
+    if(operator === '++'||operator === '+'||operator ==="--")
+        answer = add(num1, num2)
+    else if(operator === '+-'||operator === '-'||operator ==="-+")
+        answer = subtract(num1, num2)
+    else if(operator === '**')
+        answer = power(num1, num2)
+    else
     switch(operator){
-        case '+':
-            answer = add(num1, num2)
-            break
-        case '-':
-            answer = subtract(num1, num2)
-            break
         case '*':
             answer = multiply(num1, num2)
             break
@@ -94,7 +98,7 @@ function operate(expression){
             answer = divMod(num1, num2)
             break
         default:
-            answer = 0
+            throw 'Error'
     }
     return answer
 }
