@@ -40,20 +40,43 @@ function findAnswer(){
                if(!(btn.id === 'clear'))
                     btn.disabled = true
             })
+            console.log(error)
         }
         
     }
 }
 function getExpression(input){
-
-    const regexL = /^[\+|\-|\.]?[\d]+\.?[\d+]?/g
-    const regexR = /[\d]+\.?[\d+]?$/g
+    let expression
+    const regexL = /^\.?[\d]+\.?[\d+]?/g
+    const regexR = /\.?[\d]+\.?[\d+]?$/g
     const regexOp = /[\+|\-|\/|\*|\%]+/
+    const negRegex = /^\-\d+\+\d+$/g
+    const posRegex = /^\+\d+\+\d+$/g
 
-    const expression = {
-        leftOperand:parseFloat(input.match(regexL)[0]),
-        rightOperand:parseFloat(input.match(regexR)[0]),
-        operator:input.match(regexOp)[0],
+    let op
+    let left 
+    let right 
+    //expressions starting with -ve numbers -6+3
+    if(negRegex.test(input)){
+        input = input.substring(1,)
+        left = parseFloat(input.match(regexR)[0])
+        right = -1 * parseFloat(input.match(regexL)[0])
+        op = input.match(regexOp)[0]
+    } else if(posRegex.test(input)){ //starting with +ve +6+3
+        input = input.substring(1,)
+        left = parseFloat(input.match(regexL)[0])
+        right =parseFloat(input.match(regexR)[0])
+        op = input.match(regexOp)[0]
+
+    }else{//normal expression 6+3
+        left = parseFloat(input.match(regexL)[0])
+        right = parseFloat(input.match(regexR)[0])
+        op = input.match(regexOp)[0]
+    }
+    expression = {
+        leftOperand:left,
+        rightOperand:right,
+        operator:op,
     }
     return expression     
 }
@@ -88,6 +111,9 @@ function operate(expression){
         answer = power(num1, num2)
     else
     switch(operator){
+        case '*-':
+            answer = multiply(num1, num2)
+            break
         case '*':
             answer = multiply(num1, num2)
             break
