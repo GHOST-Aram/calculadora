@@ -114,13 +114,15 @@ function operate(expression){
         answer = divMod(num1, num2)
     else if(operator === '*' || operator === '*+')
         answer = multiply(num1, num2)
+    else if(operator === '/'||operator === '/+')
+        answer = divide(num1, num2)
     else 
     switch(operator){
         case '*-':
             answer = -1 * multiply(num1, num2)
             break
-        case '/':
-            answer = divide(num1, num2)
+        case '/-':
+            answer = -1 * divide(num1, num2)
             break
         case '%-':
             answer = -1 * divMod(num1, num2)
