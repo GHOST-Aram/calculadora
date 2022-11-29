@@ -40,7 +40,7 @@ function findAnswer(){
                if(!(btn.id === 'clear'))
                     btn.disabled = true
             })
-            console.log(error)
+            console.error(error)
         }
         
     }
@@ -50,8 +50,8 @@ function getExpression(input){
     const regexL = /^\.?[\d]+\.?[\d+]?/g
     const regexR = /\.?[\d]+\.?[\d+]?$/g
     const regexOp = /[\+|\-|\/|\*|\%]+/
-    const negRegex = /^\-\d+\+\d+$/g
-    const posRegex = /^\+\d+\+\d+$/g
+    const negRegex = /^\-\d+[\+|\-|\/|\*|\%]+\d+$/g
+    const posRegex = /^\+\d+[\+|\-|\/|\*|\%]+\d+$/g
 
     let op
     let left 
@@ -78,6 +78,7 @@ function getExpression(input){
         rightOperand:right,
         operator:op,
     }
+
     return expression     
 }
 function multiply(num1, num2){
@@ -109,19 +110,20 @@ function operate(expression){
         answer = subtract(num1, num2)
     else if(operator === '**')
         answer = power(num1, num2)
-    else
+    else if(operator === '%'||operator === '%+')
+        answer = divMod(num1, num2)
+    else if(operator === '*' || operator === '*+')
+        answer = multiply(num1, num2)
+    else 
     switch(operator){
         case '*-':
-            answer = multiply(num1, num2)
-            break
-        case '*':
-            answer = multiply(num1, num2)
+            answer = -1 * multiply(num1, num2)
             break
         case '/':
             answer = divide(num1, num2)
             break
-        case '%':
-            answer = divMod(num1, num2)
+        case '%-':
+            answer = -1 * divMod(num1, num2)
             break
         default:
             throw 'Error'
