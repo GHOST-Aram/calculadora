@@ -4,6 +4,11 @@ function add(num1, num2){
 function clearScreen(){
     textbox.value = ""
     answerPrgph.textContent = '0'
+    allBtns.forEach(btn =>{
+        if(btn.disabled)
+            btn.disabled = false
+     })
+
 }
 function deleteInputChar(input){
     return input.slice(0, -1)
@@ -41,7 +46,6 @@ function findAnswer(){
                if(!(btn.id === 'clear'))
                     btn.disabled = true
             })
-            console.error(error)
         }
         
     }
