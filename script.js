@@ -2,8 +2,7 @@ function add(num1, num2){
     return num1 + num2
 }
 function clearScreen(){
-    textbox.value = ""
-    answerPrgph.textContent = '0'
+    document.location.reload()
 }
 function deleteInputChar(input){
     return input.slice(0, -1)
